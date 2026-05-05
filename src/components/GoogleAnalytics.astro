@@ -1,0 +1,61 @@
+---
+import { CONFIG } from "@/data/config";
+
+const gaId = CONFIG.site.googleAnalyticsId;
+---
+
+{gaId && (
+  <>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+    <script is:inline define:vars={{ gaId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      // Default consent mode to 'denied'
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        analytics_storage: "denied",
+      });
+
+      window.gtag = gtag;
+      gtag("js", new Date());
+      gtag("config", gaId);
+
+      // Check for existing consent in localStorage
+      const consent = localStorage.getItem("cookie-consent");
+      if (consent === "accepted") {
+        gtag("consent", "update", {
+          ad_storage: "granted",
+          ad_user_data: "granted",
+          ad_personalization: "granted",
+          analytics_storage: "granted",
+        });
+      }
+
+      // Listen for consent updates
+      window.addEventListener("cookie-consent-updated", (event) => {
+        const newConsent = event.detail.consent;
+        if (newConsent === "accepted") {
+          gtag("consent", "update", {
+            ad_storage: "granted",
+            ad_user_data: "granted",
+            ad_personalization: "granted",
+            analytics_storage: "granted",
+          });
+        } else {
+          gtag("consent", "update", {
+            ad_storage: "denied",
+            ad_user_data: "denied",
+            ad_personalization: "denied",
+            analytics_storage: "denied",
+          });
+        }
+      });
+    </script>
+  </>
+)}
