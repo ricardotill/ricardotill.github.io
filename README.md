@@ -30,7 +30,7 @@ public/               # Static assets (images, favicon)
 
 ## Credits
 
-- [webrating.com](https://webrating.com) - the original developer of this Astro portfolio template
+- [Starfolio](https://github.com/webrating/starfolio) - the Astro template used for this portfolio, built by Webrating.
 - [Astro](https://astro.build), [shadcn/ui](https://ui.shadcn.com), [Tailwind CSS](https://tailwindcss.com)
 
 ## License
