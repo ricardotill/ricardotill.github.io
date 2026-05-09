@@ -1,15 +1,11 @@
 import { Icons } from "@/components/icons";
-import { House, Library } from "lucide-react";
-import { ReactLight } from "@/components/ui/svgs/reactLight";
-import { NextjsIconDark } from "@/components/ui/svgs/nextjsIconDark";
+import { House } from "lucide-react";
 import { Typescript } from "@/components/ui/svgs/typescript";
 import { Nodejs } from "@/components/ui/svgs/nodejs";
 import { Python } from "@/components/ui/svgs/python";
-import { Golang } from "@/components/ui/svgs/golang";
 import { Postgresql } from "@/components/ui/svgs/postgresql";
 import { Docker } from "@/components/ui/svgs/docker";
 import { Kubernetes } from "@/components/ui/svgs/kubernetes";
-import { Astro } from "@/components/ui/svgs/astro";
 import { Csharp } from "@/components/ui/svgs/csharp";
 import { Java } from "@/components/ui/svgs/java";
 
@@ -52,7 +48,7 @@ export const DATA = {
       order: 10, enabled: true,
       label: "Contact",
       heading: "Get in Touch",
-      text: "Want to chat? I prefer a LinkedIn message, but you can also send an e-mail or give me a call.",
+      text: "Want to chat? I prefer a LinkedIn message, but you can also send an e-mail.",
     },
   },
   photos: [
@@ -214,7 +210,7 @@ export const DATA = {
       logoUrl: "https://www.google.com/s2/favicons?domain=scouting.nl&sz=128",
       start: "July 2023",
       end: undefined,
-      description: "Leading and mentoring explorers (ages 15-18) in various scouting activities and personal development.",
+      description: "Leading and mentoring explorers (ages 15-18) in various scouting activities and personal development. Scouting Wilo, Gouda, The Netherlands.",
     },
     {
       organization: "Scouting Nederland",
@@ -224,7 +220,7 @@ export const DATA = {
       logoUrl: "https://www.google.com/s2/favicons?domain=scouting.nl&sz=128",
       start: "September 2020",
       end: "September 2023",
-      description: "Responsible for the scouts group (ages 11-15), organizing weekly meetings and annual camps.",
+      description: "Responsible for the scouts group (ages 11-15), organizing weekly meetings and annual camps. Scouting Wilo, Gouda, The Netherlands.",
     },
     {
       organization: "Scouting Nederland",
@@ -234,7 +230,7 @@ export const DATA = {
       logoUrl: "https://www.google.com/s2/favicons?domain=scouting.nl&sz=128",
       start: "September 2018",
       end: "September 2023",
-      description: "Assisting in leading the scouts group and organizing outdoor activities.",
+      description: "Assisting in leading the scouts group and organizing outdoor activities. Scouting Wilo, Gouda, The Netherlands.",
     },
     {
       organization: "Scouting Nederland",
@@ -244,7 +240,7 @@ export const DATA = {
       logoUrl: "https://www.google.com/s2/favicons?domain=scouting.nl&sz=128",
       start: "April 2016",
       end: "September 2018",
-      description: "Organizing playful and educational activities for welps (ages 7-11).",
+      description: "Organizing playful and educational activities for welps (ages 7-11). Scouting Wilo, Gouda, The Netherlands.",
     },
   ],
   certificates: [

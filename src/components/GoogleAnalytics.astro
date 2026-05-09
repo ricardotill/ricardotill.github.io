@@ -13,39 +13,48 @@ const gaId = CONFIG.site.googleAnalyticsId;
       function gtag() {
         dataLayer.push(arguments);
       }
+      window.gtag = gtag;
 
-      // Default consent mode to 'denied'
+      // 1. Determine initial consent state
+      const consent = localStorage.getItem("cookie-consent");
+      const isAccepted = consent === "accepted";
+
+      // 2. Set default consent based on current status
+      // This ensures returning users are tracked immediately
       gtag("consent", "default", {
-        ad_storage: "denied",
-        ad_user_data: "denied",
-        ad_personalization: "denied",
-        analytics_storage: "denied",
+        ad_storage: isAccepted ? "granted" : "denied",
+        ad_user_data: isAccepted ? "granted" : "denied",
+        ad_personalization: isAccepted ? "granted" : "denied",
+        analytics_storage: isAccepted ? "granted" : "denied",
+        wait_for_update: 500,
       });
 
-      window.gtag = gtag;
+      // 3. Initialize Google Analytics
       gtag("js", new Date());
-      gtag("config", gaId);
+      gtag("config", gaId, {
+        // If consent is already accepted, send the pageview normally.
+        // If not, GA will send a limited "ping" which will be upgraded 
+        // if consent is granted later in the session.
+        page_path: window.location.pathname,
+      });
 
-      // Check for existing consent in localStorage
-      const consent = localStorage.getItem("cookie-consent");
-      if (consent === "accepted") {
-        gtag("consent", "update", {
-          ad_storage: "granted",
-          ad_user_data: "granted",
-          ad_personalization: "granted",
-          analytics_storage: "granted",
-        });
-      }
-
-      // Listen for consent updates
+      // 4. Listen for consent updates from the CookieBanner
       window.addEventListener("cookie-consent-updated", (event) => {
         const newConsent = event.detail.consent;
         if (newConsent === "accepted") {
+          // Update consent state
           gtag("consent", "update", {
             ad_storage: "granted",
             ad_user_data: "granted",
             ad_personalization: "granted",
             analytics_storage: "granted",
+          });
+
+          // Explicitly trigger a page view after consent is granted 
+          // to ensure the initial visit is captured immediately.
+          gtag("event", "page_view", {
+            page_path: window.location.pathname,
+            send_to: gaId
           });
         } else {
           gtag("consent", "update", {
