@@ -1,5 +1,6 @@
 import { AnimatePresence, motion, useInView, type Variants } from "motion/react";
 import { useRef } from "react";
+import { cn } from "@/lib/utils";
 
 interface BlurFadeProps {
   children: React.ReactNode;
@@ -50,7 +51,10 @@ const BlurFade = ({
           duration,
           ease: "easeOut",
         }}
-        className={className}
+        className={cn(
+          className,
+          "print:opacity-100! print:translate-y-0! print:blur-0! print:filter-none!"
+        )}
       >
         {children}
       </motion.div>

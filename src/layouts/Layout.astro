@@ -142,7 +142,7 @@ const { baseFontSize } = CONFIG.typography;
   </head>
   <body class="min-h-screen bg-background font-sans antialiased relative">
     <!-- FlickeringGrid header background - matches template exactly -->
-    <div class="absolute inset-0 top-0 left-0 right-0 h-25 overflow-hidden z-0">
+    <div class="absolute inset-0 top-0 left-0 right-0 h-25 overflow-hidden z-0 print:hidden">
       <FlickeringGrid
         client:load
         className="h-full w-full"
@@ -156,7 +156,7 @@ const { baseFontSize } = CONFIG.typography;
     </div>
 
     <!-- Main content wrapper - matches template's z-10 container exactly -->
-    <div class="relative z-10 max-w-2xl mx-auto py-12 pb-24 sm:py-24 px-6">
+    <div class="relative z-10 max-w-2xl mx-auto py-12 pb-24 sm:py-24 px-6 print:py-4 print:pb-0">
       <slot />
     </div>
 

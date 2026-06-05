@@ -36,16 +36,16 @@ export default function VolunteerSection() {
         <AccordionItem
           key={`${volunteer.organization}-${index}`}
           value={`${volunteer.organization}-${index}`}
-          className="w-full border-b-0 grid gap-2"
+          className="w-full border-b-0 grid gap-2 print:gap-1 print:break-inside-avoid"
         >
-          <AccordionTrigger className="hover:no-underline p-0 cursor-pointer transition-colors rounded-none group [&>svg]:hidden">
+          <AccordionTrigger className="hover:no-underline p-0 cursor-pointer transition-colors rounded-none group [&>svg]:hidden print:hidden">
             <div className="flex items-center gap-x-3 justify-between w-full text-left">
               <div className="flex items-center gap-x-3 flex-1 min-w-0">
                 <LogoImage src={volunteer.logoUrl} alt={volunteer.organization} />
                 <div className="flex-1 min-w-0 gap-0.5 flex flex-col">
                   <div className="font-semibold leading-none flex items-center gap-2">
                     {volunteer.organization}
-                    <span className="relative inline-flex items-center w-3.5 h-3.5">
+                    <span className="relative inline-flex items-center w-3.5 h-3.5 print:hidden">
                       <ChevronRight
                         className={cn(
                           "absolute h-3.5 w-3.5 shrink-0 text-muted-foreground stroke-2 transition-all duration-300 ease-out",
@@ -75,9 +75,30 @@ export default function VolunteerSection() {
               </div>
             </div>
           </AccordionTrigger>
-          <AccordionContent className="p-0 ml-13 text-xs sm:text-sm text-muted-foreground">
+          <div className="hidden print:flex items-center gap-x-3 justify-between w-full text-left py-1">
+            <div className="flex items-center gap-x-3 flex-1 min-w-0">
+              <LogoImage src={volunteer.logoUrl} alt={volunteer.organization} />
+              <div className="flex-1 min-w-0 gap-0.5 flex flex-col">
+                <div className="font-semibold leading-none flex items-center gap-2">
+                  {volunteer.organization}
+                </div>
+                <div className="font-sans text-sm text-muted-foreground">
+                  {volunteer.title}
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-1 text-xs tabular-nums text-muted-foreground text-right flex-none">
+              <span>
+                {volunteer.start} - {volunteer.end ?? DATA.sections.work.presentLabel}
+              </span>
+            </div>
+          </div>
+          <AccordionContent className="p-0 ml-13 text-xs sm:text-sm text-muted-foreground print:hidden">
             {volunteer.description}
           </AccordionContent>
+          <div className="hidden print:block p-0 ml-13 print:pb-2 text-xs sm:text-sm text-muted-foreground">
+            {volunteer.description}
+          </div>
         </AccordionItem>
       ))}
     </Accordion>

@@ -67,7 +67,7 @@ const sectionComponents: Record<string, React.ReactNode> = {
                 href={education.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-x-3 justify-between group"
+                className="flex items-center gap-x-3 justify-between group print:break-inside-avoid"
               >
                 <div className="flex items-center gap-x-3 flex-1 min-w-0">
                   {education.logoUrl ? (
@@ -108,7 +108,7 @@ const sectionComponents: Record<string, React.ReactNode> = {
     </section>
   ),
   skills: (
-    <section id="skills">
+    <section id="skills" className="print:break-inside-avoid">
       <div className="flex min-h-0 flex-col gap-y-4">
         <BlurFade delay={BLUR_FADE_DELAY * 9}>
           <h2 className="text-xl font-bold">{DATA.sections.skills.heading}</h2>
@@ -142,7 +142,7 @@ const sectionComponents: Record<string, React.ReactNode> = {
   ),
   photos: <PhotosSection />,
   contact: (
-    <section id="contact">
+    <section id="contact" className="print:hidden">
       <BlurFade delay={BLUR_FADE_DELAY * 16}>
         <ContactSection />
       </BlurFade>
@@ -157,7 +157,7 @@ export default function HomePage() {
     .map(([key]) => key);
 
   return (
-    <main className="min-h-dvh flex flex-col gap-14 relative">
+    <main className="min-h-dvh flex flex-col gap-14 print:gap-6 relative">
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">
           <div className="gap-2 gap-y-6 flex flex-col md:flex-row justify-between">
@@ -188,6 +188,12 @@ export default function HomePage() {
           {sectionComponents[key]}
         </React.Fragment>
       ))}
+      <div className="hidden print:block pt-10 text-sm text-muted-foreground border-t mt-10">
+        <div className="flex justify-between items-center w-full">
+          <span>Email: {DATA.contact.email}</span>
+          <span>Phone: {DATA.contact.tel}</span>
+        </div>
+      </div>
     </main>
   );
 }
