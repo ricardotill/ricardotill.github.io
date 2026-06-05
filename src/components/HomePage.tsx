@@ -183,17 +183,18 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      <div className="hidden print:block text-sm text-muted-foreground">
+        <div className="flex justify-between items-center w-full">
+          <span>Email: {DATA.contact.email}</span>
+          <span>Phone: {DATA.contact.tel}</span>
+          <span>Website: {DATA.url.replace(/^https?:\/\//, '')}</span>
+        </div>
+      </div>
       {orderedSections.map((key) => (
         <React.Fragment key={key}>
           {sectionComponents[key]}
         </React.Fragment>
       ))}
-      <div className="hidden print:block pt-10 text-sm text-muted-foreground border-t mt-10">
-        <div className="flex justify-between items-center w-full">
-          <span>Email: {DATA.contact.email}</span>
-          <span>Phone: {DATA.contact.tel}</span>
-        </div>
-      </div>
     </main>
   );
 }
